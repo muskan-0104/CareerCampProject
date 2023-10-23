@@ -1,5 +1,17 @@
 const students=require('../models/students');
 const interviews=require('../models/interviews');
+
+//get request to student page wih a form to create new student
+module.exports.student=async function(req,res){
+  try{
+    return res.render('student',{title:'Create Student'});
+  }catch(err){
+    console.log("Error",err);
+    return;
+  };
+}
+
+//post request to student page to create new student
 module.exports.create=async function(req,res){
     try{
         console.log("Student data", req.body)
@@ -22,15 +34,7 @@ module.exports.create=async function(req,res){
      
 }
 
-module.exports.student=async function(req,res){
-    try{
-    return res.render('student',{title:'Create Student'});
-}catch(err){
-    console.log("Error",err);
-    return;
-};
-}
-
+//post req to update student, all filds pre-filled with existing data
 module.exports.updateView=async function(req,res){
     try{
         let student=await students.findById(req.params.id)
@@ -76,6 +80,7 @@ module.exports.update=async function(req,res){
     }
 }
 
+//delete student
 module.exports.delete=async function(req,res){
     try {
         let studentId=req.params.id;

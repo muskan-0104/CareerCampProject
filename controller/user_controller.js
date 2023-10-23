@@ -13,7 +13,7 @@ module.exports.signup=function(req,res){
 module.exports.user=async function(req,res){
     //check if email alrady exists
     let email=await users.findOne({email:req.body.email});
-    if(email==null)
+    if(email!=null)
     {
         req.flash('error',"Email already exists");
         return res.redirect("/user/signup");
@@ -21,37 +21,19 @@ module.exports.user=async function(req,res){
     
    else
     {
-
-        users.uploadedAvatar(req,res,function(err)
-        {
-            if(err){console.log('***Multer Error',err);}
-            //if usr has uploaded a file
-            if(req.file){
-                users.create({
-                    name:req.body.name,
-                    email:req.body.email,
-                    password:req.body.password,
-                }).catch((err)=>{
-                        console.log("Error while creating record",err);
-                    }).then((newUser)=>{
-                        console.log("New user signed up ",newUser);
-                    });
-                }
-                else{
-                    users.create({
-                        name:req.body.name,
-                        email:req.body.email,
-                        password:req.body.password,
-                    }).catch((err)=>{
-                        console.log("Error while creating record");
-                    }).then((newUser)=>{
-                        console.log("New user signed up ",newUser);
-                    });
-                }
+        console.log(req.body.name)
+        users.create({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+        }).catch((err)=>{
+                console.log("Error while creating record",err);
+            }).then((newUser)=>{
+                console.log("New user signed up ",newUser);
             });
-            
-            res.redirect("/user/login");
-        }
+
+        res.redirect("/user/login");
+    }
         
 }
 
