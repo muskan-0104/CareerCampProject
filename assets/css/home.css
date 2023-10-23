@@ -1,0 +1,33 @@
+.list{
+    border: 1px solid grey;
+    margin:  auto;
+    align-items: center;
+}
+.header{
+    color: #110D2B;
+    background-color: white;
+}
+
+.col{
+   
+    border: 1px solid rgb(170, 170, 170);
+}
+
+.entry{
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/Careercamp.png'); 
+    background-size: cover;
+}
+.data{
+    width: 100%;
+    background-color: #110D2B;
+}
+.download{
+    margin: 5% 40%;
+    align-items: center;
+}
+.add{
+    margin: 1% 8%;
+}
+

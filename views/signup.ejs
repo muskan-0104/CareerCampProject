@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/signup.css">
+<form action="/user/signup" method="post" enctype="multipart/form-data"> 
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Enter Name" name="name">
+      </div>
+      <br>
+      <% if (err==undefined) {%>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" placeholder="Enter email" name="email">
+      <small id="emailHelp" class="form-text text-muted">We never share your email!</small>
+    </div>
+    <%} else {%>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" placeholder="Enter email" name="email" style="border:1px solid red;">
+        <small id="emailHelp" class="form-text text-muted" style="color: red;"><%=err%></small>
+      </div>
+      <%}%>
+    <br>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" placeholder="Password" name="password">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

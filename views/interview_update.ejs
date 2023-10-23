@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="/css/styles.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <link href="/css/dropdowns.css" rel="stylesheet"> 
+    </head>
+    <body style=" background-color: #f0e5cc;">
+        <h3>New Interview</h3>
+        <form style="margin: 5% auto; width: 50%;" action="/interview/update/<%= interview.id%>" method="post" class="search-bar autocomplete">
+            <div class="mb-3">
+              <label for="company_name" class="form-label">Company</label>
+              <input type="text" class="form-control" name="company_name" value="<%=interview.company_name%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="interview_date" class="form-label">Interview Date</label>
+                <input type="text" class="form-control" name="interview_date" value="<%=interview.interview_date%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="interview_status" class="form-label">Interview Status</label>
+                <select name="interview_status" id="interview_status" required>
+                  <option value="Created">Created</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+            <div class="mb-3">
+                <label for="result" class="form-label">Result</label>
+                <select name="result" id="result" required>
+                  <option value="Pass">Pass</option>
+                  <option value="Fail">Fail</option>
+                  <option value="Not Attempted">Not Attempted</option>
+                </select>
+              </div>
+            <div class="mb-3">
+                <label for="student" class="form-label">Student</label>
+                <input type="text" class="form-control" name="student" id="myInput" class="search-bar-input" value="<%=interview.student%>"  required>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </body>
+</html>
+<script>
+    var meals =[]
+    '<%for (let s of students) {%>'
+    meals.push( '<%= s.name%> (<%= s.id%>)' )
+    '<%}%>'
+    console.log(meals)
+</script>
+<script src="/js/index.js"></script>
