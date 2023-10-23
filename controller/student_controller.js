@@ -26,7 +26,7 @@ module.exports.create=async function(req,res){
                backend_marks:req.body.backend_marks,
                react_marks:req.body.react_marks,
             });
-            res.redirect("/");
+            res.redirect("/#student");
         }catch(err){
             console.log("Error",err);
             return;
@@ -64,14 +64,14 @@ module.exports.update=async function(req,res){
             { new: true } // This option returns the updated document
           )
           .then(updatedStudent=> {
-            res.redirect('/')
+            res.redirect('/#student')
           })
           .catch(error => {
             console.log("Error in updating student", error)
             return;
           });
           
-        res.redirect('/')
+        res.redirect('/#student')
                 
         }catch(err){
         console.log("Error",err);
@@ -88,7 +88,7 @@ module.exports.delete=async function(req,res){
         await students.findByIdAndDelete(studentId);
         await interviews.deleteMany({student:studentId});
     
-        return res.redirect("back");
+        return res.redirect("/#student");
       } catch (error) {
         // Handle any errors that may occur during the deletion
         console.error(error);

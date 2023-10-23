@@ -33,7 +33,7 @@ module.exports.create=async function(req,res){
         foundStudent.interview.push(newInt);
         foundStudent.save();
 
-        res.redirect("/");
+        res.redirect("/#interview");
         }catch(err){
             console.log("Error",err);
             return;
@@ -69,14 +69,14 @@ module.exports.update=async function(req,res){
                         console.log(err)
                     })
             } else {
-                res.redirect('/')
+                res.redirect('/#interview')
             }
           })
           .catch(error => {
             // Handle errors here
           });
           
-        res.redirect('/')
+        res.redirect('/#interview')
                 
         }catch(err){
         console.log("Error",err);
@@ -90,7 +90,7 @@ module.exports.updateView=async function(req,res){
     try{
         let interview=await interviews.findById(req.params.id)
         let student=await students.find({}).sort('-createdAt')
-    return res.render('interview_update',{title:'Create Interview',interview:interview, students:student});
+    return res.render('interview_update',{title:'Update Interview',interview:interview, students:student});
 }catch(err){
     console.log("Error",err);
     return;
@@ -108,7 +108,7 @@ module.exports.delete=async function(req,res){
         //delete interview detail from student
         await students.findByIdAndUpdate(studentId,{$pull:{interview:interviewId}});
         
-        return res.redirect("back");
+        return res.redirect("/#interview");
     }catch(err){
         console.log('Error',err);
         return;
